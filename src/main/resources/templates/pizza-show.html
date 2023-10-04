@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<th:block th:replace="~{frags :: head}" />
+</head>
+<body>
+	<div th:object="${pizza}">
+		<h1>[[*{name}]]</h1>
+		<p>Descrizione: [[*{description}]]</p>
+		<img alt="" th:src="*{imgUrl}">
+		<p>Prezzo: [[*{getFormattedPrice()}]]€</p>
+	</div>
+</body>
+</html>
