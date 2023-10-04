@@ -3,12 +3,18 @@
 <head>
 	<th:block th:replace="~{frags :: head}" />
 </head>
-<body>
-	<div th:object="${pizza}">
-		<h1>[[*{name}]]</h1>
-		<p>Descrizione: [[*{description}]]</p>
-		<img alt="" th:src="*{imgUrl}">
-		<p>Prezzo: [[*{getFormattedPrice()}]]€</p>
+<body class="bg-dark text-white">
+	<header th:replace="~{frags :: header}"></header>
+	
+	<div th:object="${pizza}" class="d-flex align-items-center flex-column">
+		<h1 class="text-danger mb-4">[[*{name}]]</h1>
+		<div class="pizza-index-img mb-4">
+			<img alt="" th:src="*{imgUrl}">
+		</div>
+		<p><span class="text-danger fw-semibold fs-5">Descrizione :</span> [[*{description}]]</p>
+		<p class="mb-5"><span class="text-danger fw-semibold fs-5">Prezzo :</span> [[*{getFormattedPrice()}]]€</p>
+		
+		<a href="/pizzas" class="btn btn-danger">Torna al Menù</a>
 	</div>
 </body>
 </html>

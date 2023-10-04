@@ -3,14 +3,27 @@
 <head>
 	<th:block th:replace="~{frags :: head}" />
 </head>
-<body>
-	<h1>Pizze: </h1>
-	<ul th:if="${pizzas.size()> 0}">
-		<li th:each="pizza : ${pizzas}" th:object="${pizza}">
-			<a th:href="@{/pizzas/{id}(id=*{id})}">[[*{name}]]</a>
-		</li>
-	</ul>
-	
-	<p th:unless="${pizzas.size()> 0}">Non ci sono pizze</p>
+<body class="bg-dark text-white">
+
+	<header th:replace="~{frags :: header}"></header>
+		
+	<div class="container">
+		<div class="row row-cols-5" th:if="${pizzas.size()> 0}">
+			<div th:each="pizza : ${pizzas}" th:object="${pizza}" class="col">
+				<a th:href="@{/pizzas/{id}(id=*{id})}" class="card pizza-card border-0 h-100 text-decoration-none">
+					<div class="pizza-img">
+						<img th:src="*{imgUrl}" class="card-img-top">
+					</div>
+				  	<div class="pizza-txt p-3 d-flex justify-content-between">
+				  		<h5 class="card-title text-danger mb-0">[[*{name}]]</h5>
+				  		<p class="mb-0 fw-semibold text-secondary"><span class="fs-5">[[*{getFormattedPrice()}]]</span>€</p>
+				  	</div>
+				</a>
+			</div>
+		</div>
+	</div>	
+		
+		
+	<p th:unless="${pizzas.size()> 0}" class="text-center text-danger fs-3 fw-semibold">Non ci sono pizze!</p>	
 </body>
 </html>
