@@ -5,10 +5,12 @@
 </head>
 <body>
 	<h1>Pizze: </h1>
-	<ul>
+	<ul th:if="${pizzas.size()> 0}">
 		<li th:each="pizza : ${pizzas}" th:object="${pizza}">
 			<a th:href="@{/pizzas/{id}(id=*{id})}">[[*{name}]]</a>
 		</li>
 	</ul>
+	
+	<p th:unless="${pizzas.size()> 0}">Non ci sono pizze</p>
 </body>
 </html>
