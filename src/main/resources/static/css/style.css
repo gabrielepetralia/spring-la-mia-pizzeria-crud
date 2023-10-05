@@ -36,3 +36,15 @@
 .pizza-index-img img {
 	max-width: 100%;
 }
+
+.search-pizza {
+	width: 300px;
+}
+
+.search-pizza input:focus {
+    box-shadow: none;
+    border: none;
+    outline: none;
+}
+
+

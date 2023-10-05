@@ -6,6 +6,13 @@
 <body class="bg-dark text-white">
 
 	<header th:replace="~{frags :: header}"></header>
+	
+	<form class="d-flex justify-content-center mb-4">
+		<div class="input-group mb-3 search-pizza">
+		  <input type="text" class="form-control" placeholder="Cerca una pizza" aria-label="Recipient's username" name="name" th:value="${name}">
+		  <button class="btn btn-danger" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+		</div>
+	</form>
 		
 	<div class="container">
 		<div class="row row-cols-5" th:if="${pizzas.size()> 0}">
