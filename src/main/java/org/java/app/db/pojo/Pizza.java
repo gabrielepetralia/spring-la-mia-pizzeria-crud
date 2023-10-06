@@ -1,10 +1,15 @@
 package org.java.app.db.pojo;
 
+import org.hibernate.validator.constraints.Length;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Pizza {
@@ -14,10 +19,25 @@ public class Pizza {
 	private int id;
 	
 	@Column(nullable = false, unique = true)
+	@Length(
+			min = 3, 
+			max = 30, 
+			message = "Il nome deve essere composto da 3 a 128 caratteri"
+		)
 	private String name;
 	
+	@Length(
+			min = 3, 
+			max = 255, 
+			message = "La descrizione deve essere lunga da 3 a 255 caratteri"
+		)
 	private String description;
+	
+	@NotBlank(message = "Inserire l\' url dell\' immagine")
 	private String imgUrl;
+	
+	@NotNull(message = "Inserire il prezzo")
+	@DecimalMin(value = "0.00", inclusive = false, message="Il prezzo non può essere inferiore o uguale a 0")
 	private double price;
 	
 	public Pizza() { }
@@ -64,13 +84,13 @@ public class Pizza {
 	public double getPrice() {
 		return price;
 	}
-	
-	public String getFormattedPrice() {
-		return String.format("%.2f", price);
-	}
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+	
+	public String getFormattedPrice() {
+		return String.format("%.2f", price);
 	}
 	
 }

@@ -6,7 +6,7 @@
 <body class="bg-dark text-white">
 	<header th:replace="~{frags :: header}"></header>
 	
-	<div th:object="${pizza}" class="d-flex align-items-center flex-column">
+	<div th:object="${pizza}" class="d-flex align-items-center flex-column mb-5">
 		<h1 class="text-danger mb-4">[[*{name}]]</h1>
 		<div class="pizza-index-img mb-4">
 			<img alt="" th:src="*{imgUrl}" onerror="this.src='/imgs/noimage.png'">

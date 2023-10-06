@@ -11,6 +11,12 @@
 	overflow: hidden;
 }
 
+.pizza-card h5 {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
 .pizza-img {
 	height: 200px;
 	border: 0;
@@ -49,7 +55,7 @@
 
 .pizza-form {
 	background-color: white;
-	min-width: 400px;
+	width: 400px;
 	padding: 20px 50px;
 	border-radius: 15px;
 }
