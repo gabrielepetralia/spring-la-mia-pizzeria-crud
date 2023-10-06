@@ -7,12 +7,20 @@
 
 	<header th:replace="~{frags :: header}"></header>
 	
-	<form class="d-flex justify-content-center mb-4">
-		<div class="input-group mb-3 search-pizza">
-		  <input type="text" class="form-control" placeholder="Cerca una pizza" aria-label="Recipient's username" name="name" th:value="${name}">
-		  <button class="btn btn-danger" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+	<div class="d-flex justify-content-around mb-4">
+		<div></div>
+		
+		<form>
+			<div class="input-group mb-3 search-pizza">
+			  <input type="text" class="form-control" placeholder="Cerca una pizza" aria-label="Recipient's username" name="name" th:value="${name}">
+			  <button class="btn btn-danger" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+			</div>
+		</form>
+		
+		<div>
+			<a href="/pizzas/create" class="btn btn-danger" title="Aggiungi una nuova pizza"><i class="fa-solid fa-plus"></i></a>
 		</div>
-	</form>
+	</div>
 		
 	<div class="container">
 		<div class="row row-cols-5" th:if="${pizzas.size()> 0}">

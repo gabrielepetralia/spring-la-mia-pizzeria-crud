@@ -39,4 +39,12 @@ public class PizzaController {
 		
 		return "pizza-show";
 	}
+	
+	@GetMapping("/create")
+	public String getCreateForm(Model model) {
+		
+		model.addAttribute("book", new Pizza());
+		
+		return "pizza-create";
+	}
 }

@@ -47,4 +47,11 @@
     outline: none;
 }
 
+.pizza-form {
+	background-color: white;
+	min-width: 400px;
+	padding: 20px 50px;
+	border-radius: 15px;
+}
+
 
