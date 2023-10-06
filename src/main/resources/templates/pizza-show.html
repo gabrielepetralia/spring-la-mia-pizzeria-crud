@@ -9,7 +9,7 @@
 	<div th:object="${pizza}" class="d-flex align-items-center flex-column">
 		<h1 class="text-danger mb-4">[[*{name}]]</h1>
 		<div class="pizza-index-img mb-4">
-			<img alt="" th:src="*{imgUrl}">
+			<img alt="" th:src="*{imgUrl}" onerror="this.src='/imgs/noimage.png'">
 		</div>
 		<p><span class="text-danger fw-semibold fs-5">Descrizione :</span> [[*{description}]]</p>
 		<p class="mb-5"><span class="text-danger fw-semibold fs-5">Prezzo :</span> [[*{getFormattedPrice()}]]€</p>

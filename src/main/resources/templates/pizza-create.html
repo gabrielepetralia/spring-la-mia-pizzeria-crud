@@ -9,27 +9,27 @@
 	
 	
 	<div class="d-flex align-items-center flex-column">
-		<form class="pizza-form text-secondary mb-5">
+		<form class="pizza-form text-secondary mb-5" th:object="${pizza}" method="POST">
 			<h4 class="text-center text-danger py-3">Aggiungi una nuova pizza</h4>
-		  <div class="mb-3">
-			  <label for="exampleInputNome" class="form-label">Nome</label>
-			  <input type="text" class="form-control" id="exampleInputNome">
-			</div>
-			<div class="mb-3">
-			  <label for="exampleInputDescrizione" class="form-label">Descrizione</label>
-			  <textarea class="form-control" id="exampleInputDescrizione"></textarea>
-			</div>
-			<div class="mb-3">
-			  <label for="exampleInputURL" class="form-label">URL Immagine</label>
-			  <input type="text" class="form-control" id="exampleInputURL">
-			</div>
-			<div class="mb-4">
-			  <label for="exampleInputPrezzo" class="form-label">Prezzo</label>
-			  <input type="number" step="0.01" class="form-control" id="exampleInputPrezzo">
-			</div>
-		  <div class="d-flex justify-content-end">
-		 	 <button type="submit" class="btn btn-danger">Salva</button>
-		  </div>
+			  <div class="mb-3">
+				  <label for="name" class="form-label">Nome</label>
+				  <input type="text" class="form-control" id="name" name="name" th:field="*{name}">
+				</div>
+				<div class="mb-3">
+				  <label for="description" class="form-label">Descrizione</label>
+				  <textarea class="form-control" id="description" name="description" th:field="*{description}"></textarea>
+				</div>
+				<div class="mb-3">
+				  <label for="imgUrl" class="form-label">URL Immagine</label>
+				  <input type="text" class="form-control" id="imgUrl" name="imgUrl" th:field="*{imgUrl}">
+				</div>
+				<div class="mb-4">
+				  <label for="price" class="form-label">Prezzo</label>
+				  <input type="number" step="0.10" min="1.00" class="form-control" id="price" name="price" th:field="*{price}">
+				</div>
+			  <div class="d-flex justify-content-end">
+			 	 <button type="submit" class="btn btn-danger">Salva</button>
+			  </div>
 		</form>
 		
 		<a href="/pizzas" class="btn btn-danger">Torna al Menù</a>

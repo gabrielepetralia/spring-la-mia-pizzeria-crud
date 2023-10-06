@@ -7,10 +7,15 @@ import org.java.app.db.serv.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/pizzas")
@@ -43,8 +48,38 @@ public class PizzaController {
 	@GetMapping("/create")
 	public String getCreateForm(Model model) {
 		
-		model.addAttribute("book", new Pizza());
+		model.addAttribute("pizza", new Pizza());
 		
 		return "pizza-create";
+	}
+	
+	@PostMapping("/create")
+	public String storePizza(
+			@Valid @ModelAttribute Pizza pizza,
+			BindingResult bindingResult,
+			Model model
+			) {
+		
+		if (bindingResult.hasErrors()) {
+			System.out.println("Error:");
+			bindingResult.getAllErrors().forEach(System.out::println);
+			
+			return "pizza-create";
+		} else 
+			System.out.println("No error");
+		
+		try {
+			pizzaService.save(pizza);
+		} catch (Exception e) {
+			
+			// CONSTRAIN VALIDATION (unique)
+			System.out.println("Errore constrain: " + e.getClass().getSimpleName());
+			
+			model.addAttribute("name_unique", "Nome già presente nel menù");
+			
+			return "pizza-create";
+		}
+		
+		return "redirect:/pizzas";
 	}
 }

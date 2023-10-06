@@ -23,11 +23,11 @@
 	</div>
 		
 	<div class="container">
-		<div class="row row-cols-5" th:if="${pizzas.size()> 0}">
-			<div th:each="pizza : ${pizzas}" th:object="${pizza}" class="col">
+		<div class="row row-cols-5 mb-5" th:if="${pizzas.size()> 0}">
+			<div th:each="pizza : ${pizzas}" th:object="${pizza}" class="col mb-5">
 				<a th:href="@{/pizzas/{id}(id=*{id})}" class="card pizza-card border-0 h-100 text-decoration-none">
 					<div class="pizza-img">
-						<img th:src="*{imgUrl}" class="card-img-top">
+						<img th:src="*{imgUrl}" onerror="this.src='/imgs/noimage.png'" class="card-img-top">
 					</div>
 				  	<div class="pizza-txt p-3 d-flex justify-content-between">
 				  		<h5 class="card-title text-danger mb-0">[[*{name}]]</h5>
