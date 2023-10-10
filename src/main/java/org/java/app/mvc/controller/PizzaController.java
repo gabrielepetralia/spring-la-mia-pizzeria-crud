@@ -50,7 +50,7 @@ public class PizzaController {
 		
 		model.addAttribute("pizza", new Pizza());
 		
-		return "pizza-create";
+		return "pizza-create-edit";
 	}
 	
 	@PostMapping("/create")
@@ -77,7 +77,49 @@ public class PizzaController {
 			
 			model.addAttribute("name_unique", "Nome già presente nel menù");
 			
+			return "pizza-create-edit";
+		}
+		
+		return "redirect:/pizzas";
+	}
+	
+	@GetMapping("/update/{id}")
+	public String getEditForm(
+			@PathVariable int id,
+			Model model
+		) {
+		
+		Pizza pizza = pizzaService.findById(id);
+		model.addAttribute("pizza", pizza);
+		
+		return "pizza-create-edit";
+	}
+	
+	@PostMapping("/update/{id}")
+	public String updatePizza(
+			@Valid @ModelAttribute Pizza pizza,
+			BindingResult bindingResult,
+			Model model
+			) {
+		
+		if (bindingResult.hasErrors()) {
+			System.out.println("Error:");
+			bindingResult.getAllErrors().forEach(System.out::println);
+			
 			return "pizza-create";
+		} else 
+			System.out.println("No error");
+		
+		try {
+			pizzaService.save(pizza);
+		} catch (Exception e) {
+			
+			// CONSTRAIN VALIDATION (unique)
+			System.out.println("Errore constrain: " + e.getClass().getSimpleName());
+			
+			model.addAttribute("name_unique", "Nome già presente nel menù");
+			
+			return "pizza-create-edit";
 		}
 		
 		return "redirect:/pizzas";
