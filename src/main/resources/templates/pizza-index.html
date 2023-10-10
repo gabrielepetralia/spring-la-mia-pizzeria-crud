@@ -34,8 +34,15 @@
 				  		<p class="mb-0 fw-semibold text-secondary"><span class="fs-5">[[*{getFormattedPrice()}]]</span>€</p>
 				  	</div>
 				</a>
-				<div class="mt-2">
-					<a th:href="@{/pizzas/update/{id}(id=*{id})}" class="btn btn-danger" title="Modifica pizza"><i class="fa-solid fa-pen-to-square"></i></a>
+				<div class="mt-2 d-flex justify-content-end">
+					<a th:href="@{/pizzas/update/{id}(id=*{id})}" class="btn btn-secondary me-2" title="Modifica pizza"><i class="fa-solid fa-pen-to-square"></i></a>
+					<form 
+						th:action="@{/pizzas/delete/{id}(id=*{id})}" 
+						method="POST"
+						style="display: inline;"
+					>
+				 	 	<button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+					</form>
 				</div>
 			</div>
 		</div>

@@ -124,4 +124,12 @@ public class PizzaController {
 		
 		return "redirect:/pizzas";
 	}
+	
+	@PostMapping("/delete/{id}")
+	public String deleteBook(@PathVariable int id) {
+		Pizza pizza = pizzaService.findById(id);
+		pizzaService.delete(pizza);
+		
+		return "redirect:/pizzas";
+	}
 }

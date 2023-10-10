@@ -10,7 +10,8 @@
 	
 	<div class="d-flex align-items-center flex-column mb-5">
 		<form class="pizza-form text-secondary mb-5 fw-semibold" th:object="${pizza}" method="POST">
-			<h4 class="text-center text-danger py-3">Aggiungi una nuova pizza</h4>
+			<h4 th:if="${pizza.id > 0}" class="text-center text-danger py-3">Modifica la pizza</h4>
+			<h4 th:unless="${pizza.id > 0}" class="text-center text-danger py-3">Aggiungi una nuova pizza</h4>
 			  	<div class="mb-3">
 				  	<label for="name" class="form-label">Nome</label>
 			  		<input type="text" class="form-control" id="name" name="name" th:field="*{name}">
@@ -48,7 +49,7 @@
 					</div>
 				</div>
 			  <div class="d-flex justify-content-end">
-			 	 <button type="submit" class="btn btn-danger">Salva</button>
+			 	 <button type="submit" class="btn btn-danger"><i class="fa-solid fa-floppy-disk"></i></button>
 			  </div>
 		</form>
 		
